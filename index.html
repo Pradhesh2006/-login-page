@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Login Page</title>
@@ -6,7 +6,7 @@
 <style>
 body{
     font-family: Arial, sans-serif;
-    background:linear-gradient(to right,#4facfe,#00f2fe);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
 }
 
 .container{
@@ -26,12 +26,14 @@ input{
     width:100%;
     padding:10px;
     margin:10px 0;
+    box-sizing:border-box;
 }
 
 button{
     padding:10px 20px;
     display:block;
     margin:auto;
+    cursor:pointer;
 }
 
 #result{
@@ -42,6 +44,7 @@ button{
 </style>
 
 </head>
+
 <body>
 
 <div class="container">
@@ -62,7 +65,17 @@ placeholder="Enter password">
 
 <script>
 
+let attempts = 0;
+let locked = false;
+
 function login(){
+
+if(locked)
+{
+document.getElementById("result").innerHTML =
+"⏳ Account Locked! Try again after 30 seconds";
+return;
+}
 
 let user =
 document.getElementById("username").value;
@@ -70,15 +83,41 @@ document.getElementById("username").value;
 let pass =
 document.getElementById("password").value;
 
-if(user=="pradhesh" && pass=="cse2026") 
+if(user=="pradhesh" && pass=="cse2026")
 {
 document.getElementById("result").innerHTML =
 "✅ Login Successful";
+
+attempts = 0;
+}
+else
+{
+attempts++;
+
+if(attempts >= 3)
+{
+locked = true;
+
+document.getElementById("result").innerHTML =
+"🚫 Too many failed attempts! Wait 30 seconds";
+
+setTimeout(function(){
+
+locked = false;
+attempts = 0;
+
+document.getElementById("result").innerHTML =
+"✅ You can try again now";
+
+},30000);
+
 }
 else
 {
 document.getElementById("result").innerHTML =
 "❌ Wrong Username or Password";
+
+}
 }
 
 }
