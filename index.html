@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:linear-gradient(to right,#4facfe,#00f2fe);
+}
+
+.container{
+    width:320px;
+    margin:150px auto;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 15px gray;
+}
+
+h1{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+button{
+    padding:10px 20px;
+    display:block;
+    margin:auto;
+}
+
+#result{
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Login Page</h1>
+
+<input type="text" id="username"
+placeholder="Enter username">
+
+<input type="password" id="password"
+placeholder="Enter password">
+
+<button onclick="login()">Login</button>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+
+function login(){
+
+let user =
+document.getElementById("username").value;
+
+let pass =
+document.getElementById("password").value;
+
+if(user=="pradhesh" && pass=="cse2026") 
+{
+document.getElementById("result").innerHTML =
+"✅ Login Successful";
+}
+else
+{
+document.getElementById("result").innerHTML =
+"❌ Wrong Username or Password";
+}
+
+}
+
+</script>
+
+</body>
+</html>
